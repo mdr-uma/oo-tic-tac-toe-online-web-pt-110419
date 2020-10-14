@@ -64,16 +64,24 @@ class TicTacToe
     display_board
   end
 
+#   def won?
+#     WIN_COMBINATIONS.any? do |combo|
+#       if (@board[combo[0]]) == "X" && (@board[combo[1]]) == "X" && (@board[combo[2]]) == "X"
+#         return combo
+#       elsif (@board[combo[0]]) == "O" && (@board[combo[1]]) == "O" && (@board[combo[2]]) == "O"
+#         return combo
+#       end
+#     end
+#   end
+  
   def won?
     WIN_COMBINATIONS.any? do |combo|
-      if (@board[combo[0]]) == "X" && (@board[combo[1]]) == "X" && (@board[combo[2]]) == "X"
+      if position_taken?(combo[0]) && @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
         return combo
-      elsif (@board[combo[0]]) == "O" && (@board[combo[1]]) == "O" && (@board[combo[2]]) == "O"
-        return combo
-        end
       end
     end
-
+  end
+  
   def full?
     @board.all? {|x| x != " "}
 
@@ -103,10 +111,8 @@ class TicTacToe
   #   end
   #   if winner
   #     puts "Congratulations #{winner}!"
-  #   else draw?
-  #   # binding.pry
+  #   else
   #     puts "Cat's Game!"
-  #
   #   end
   # end
 
